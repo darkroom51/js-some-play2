@@ -57,6 +57,9 @@
 
 
     const generateRunicWords = (runesCount) => {
+        if(typeof runesCount !== 'number') return Error ('Argument is not a number')
+        if(runesCount === 0) return Error ('Argument must be > 0')
+
         let inputRunes = []
         let outputRunicWords = []
         let maxPowerRune;
@@ -66,10 +69,8 @@
             let runicWordArr = []
             for (let i=0; i < runesCount; i++){
                 maxPowerRune = findMostPowerfulRune(inputRunes)
-                if (true){
-                    inputRunes.splice(inputRunes.indexOf(maxPowerRune),1)
-                    runicWordArr[i] = maxPowerRune
-                }
+                inputRunes.splice(inputRunes.indexOf(maxPowerRune),1)
+                runicWordArr[i] = maxPowerRune
             }
             outputRunicWords[n]= generateRunicWord(runicWordArr)
             ++n;
@@ -78,19 +79,17 @@
     }
 
 
-    //---- TEST OUTPUT
-    console.log('result runic words: ', generateRunicWords(2))
-
-
     const checkRunicWord = (runicWord) => {
-        let output = 0;
+        if(typeof runicWord !== 'string') return Error ('Argument is not a string')
+        
+        let inputRunes = []
+        let output = 0
+        inputRunes = inputRunes.concat(runes)
         runicWordArr = runicWord.split('-')
         for (let i=0; i < runicWordArr.length; i++){
-            for (let j=0; j < runes.length; j++){
-                if (runicWordArr[i] === runes[j].name ){
-                    if (true){
-                        output += runes[j].power
-                    }
+            for (let j=0; j < inputRunes.length; j++){
+                if (runicWordArr[i] === inputRunes[j].name ){
+                    output += inputRunes[j].power
                 }
             }
         }
@@ -98,8 +97,11 @@
         return output
     }
 
+
     //---- TEST OUTPUT
-    console.log('test runic word: ', checkRunicWord('Eld-Lum-Sur'))
+    console.log('generateRunicWords: ', generateRunicWords(3))
+    console.log('checkRunicWord: ', checkRunicWord('Amn-Jah-Ist'))
+    
 
 
 
