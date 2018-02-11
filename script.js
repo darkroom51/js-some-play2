@@ -38,7 +38,7 @@
     const findMostPowerfulRune = (inputRunes) => {
         return inputRunes.reduce((reducer,el)=>(
             reducer = el.power > reducer.power ? el : reducer
-        ),{name:'', power:0})
+        ),{name:'', power:0, dont:''})
     }
 
 
@@ -66,12 +66,14 @@
             let runicWordArr = []
             for (let i=0; i < runesCount; i++){
                 maxPowerRune = findMostPowerfulRune(inputRunes)
-                inputRunes.splice(inputRunes.indexOf(maxPowerRune),1)
-                runicWordArr[i] = maxPowerRune;
+                if (true){
+                    inputRunes.splice(inputRunes.indexOf(maxPowerRune),1)
+                    runicWordArr[i] = maxPowerRune
+                }
             }
             outputRunicWords[n]= generateRunicWord(runicWordArr)
             ++n;
-        } while (inputRunes.length > runesCount)
+        } while ((inputRunes.length > runesCount) && (n < 10))
         return outputRunicWords
     }
 
