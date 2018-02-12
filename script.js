@@ -49,9 +49,9 @@
             runicWord.power += el.power
             if (i < arr.length-1) {
                 runicWord.name += '-'
-                runicWord.power -= arr.length
             }
         })
+        runicWord.power -= runesArr.length
         return runicWord
     }
 
@@ -68,9 +68,9 @@
         do{
             let runicWordArr = []
             for (let i=0; i < runesCount; i++){
-                maxPowerRune = findMostPowerfulRune(inputRunes)
-                inputRunes.splice(inputRunes.indexOf(maxPowerRune),1)
-                runicWordArr[i] = maxPowerRune
+                    maxPowerRune = findMostPowerfulRune(inputRunes)
+                    inputRunes.splice(inputRunes.indexOf(maxPowerRune),1)
+                    runicWordArr[i] = maxPowerRune
             }
             outputRunicWords[n]= generateRunicWord(runicWordArr)
             ++n;
@@ -93,7 +93,7 @@
                 }
             }
         }
-        output = output - runicWordArr.length
+        output -= runicWordArr.length
         return output
     }
 
